@@ -114,9 +114,15 @@ function initialize()
 	// build markerControls
 	markerRoot1 = new THREE.Group();
 	scene.add(markerRoot1);
-	let markerControls1 = new THREEx.ArMarkerControls(arToolkitContext, markerRoot1, {
-		type: 'ntf', patternUrl: "markers/ntf/k",
-	})
+	//let markerControls1 = new THREEx.ArMarkerControls(arToolkitContext, markerRoot1, {
+	//	type: 'ntf', patternUrl: "markers/ntf/k",
+	//})
+	
+	var markerControls = new THREEx.ArMarkerControls(arToolkitContext, camera, {
+            type : 'nft',
+            descriptorsUrl : 'markers/ntf/k',
+            changeMatrixMode: 'cameraTransformMatrix'
+        })
 	
 	
 	//let markerControls1 = new THREEx.ArMarkerControls(arToolkitContext, markerRoot1, {
