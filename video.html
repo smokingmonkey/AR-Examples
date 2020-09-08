@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-	<title>1.6</title>
+	<title>1.7!</title>
 	<!-- include three.js library -->
 	<script src='js/three.js'></script>
 	<!-- include jsartookit -->
@@ -48,7 +48,7 @@ function initialize()
 	scene.add( ambientLight );
 				
 	camera = new THREE.Camera();
-	scene.add(camera);
+	//scene.add(camera);
 
 	renderer = new THREE.WebGLRenderer({
 		antialias : true,
@@ -97,19 +97,11 @@ function initialize()
 	////////////////////////////////////////////////////////////	
 
 	// create atToolkitContext
-	// arToolkitContext = new THREEx.ArToolkitContext({
-	// 	cameraParametersUrl: 'data/camera_para.dat',
-	// 	detectionMode: 'mono'
-	// });
-	var arToolkitContext = new THREEx.ArToolkitContext({
-            detectionMode: 'mono',
-            canvasWidth: 480,
-            canvasHeight: 640,
-        }, {
-            sourceWidth: 480,
-            sourceHeight: 640,
-        })
-
+	arToolkitContext = new THREEx.ArToolkitContext({
+		cameraParametersUrl: 'data/camera_para.dat',
+		detectionMode: 'mono'
+	});
+	
 	// copy projection matrix to camera when initialization complete
 	arToolkitContext.init( function onCompleted(){
 		camera.projectionMatrix.copy( arToolkitContext.getProjectionMatrix() );
@@ -122,14 +114,15 @@ function initialize()
 	// build markerControls
 	markerRoot1 = new THREE.Group();
 	scene.add(markerRoot1);
+	scene.add(camera);
 	// let markerControls1 = new THREEx.ArMarkerControls(arToolkitContext, markerRoot1, {
 	// 	////////type: 'pattern', patternUrl: "data/hiro.patt",
 	// 	type: 'nft', descriptorsUrl : "data/k",
 	// })
 
-	let markerControls1 = new THREEx.ArMarkerControls(arToolkitContext, markerRoot1, {
+	let markerControls1 = new THREEx.ArMarkerControls(arToolkitContext, camera, {
             type : 'nft',
-            descriptorsUrl : 'datah/k',
+            descriptorsUrl : 'data/k',
             changeMatrixMode: 'cameraTransformMatrix'
         })
 
@@ -149,7 +142,7 @@ function initialize()
 	
 	mesh1 = new THREE.Mesh( geometry1, material1 );
 	mesh1.rotation.x = -Math.PI/2;
-	markerRoot1.add( mesh1 );
+	camera.add( mesh1 );
 }
 
 
