@@ -97,11 +97,19 @@ function initialize()
 	////////////////////////////////////////////////////////////	
 
 	// create atToolkitContext
-	arToolkitContext = new THREEx.ArToolkitContext({
-		cameraParametersUrl: 'data/camera_para.dat',
-		detectionMode: 'mono'
-	});
-	
+	// arToolkitContext = new THREEx.ArToolkitContext({
+	// 	cameraParametersUrl: 'data/camera_para.dat',
+	// 	detectionMode: 'mono'
+	// });
+	var arToolkitContext = new THREEx.ArToolkitContext({
+            detectionMode: 'mono',
+            canvasWidth: 480,
+            canvasHeight: 640,
+        }, {
+            sourceWidth: 480,
+            sourceHeight: 640,
+        })
+
 	// copy projection matrix to camera when initialization complete
 	arToolkitContext.init( function onCompleted(){
 		camera.projectionMatrix.copy( arToolkitContext.getProjectionMatrix() );
