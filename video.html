@@ -12,14 +12,13 @@
 	<script src="threex/threex-artoolkitcontext.js"></script>
 	<script src="threex/threex-arbasecontrols.js"></script>
 	<script src="threex/threex-armarkercontrols.js"></script>
-	<script src="https://raw.githack.com/AR-js-org/AR.js/master/three.js/build/ar-nft.js">
 </head>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
 
 <video id="video" autoplay loop crossOrigin="anonymous" webkit-playsinline style="display:none">
-	<source src="video/genese-moda-femenina-spot-50-seg.ogv" type='video/ogg; codecs="theora, vorbis"'>
-	<source src="video/genese-moda-femenina-spot-50-seg.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+	<source src="video/sintel.ogv" type='video/ogg; codecs="theora, vorbis"'>
+	<source src="video/sintel.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
 </video>
 		
 <!-- 
@@ -114,20 +113,9 @@ function initialize()
 	// build markerControls
 	markerRoot1 = new THREE.Group();
 	scene.add(markerRoot1);
-	//let markerControls1 = new THREEx.ArMarkerControls(arToolkitContext, markerRoot1, {
-	//	type: 'ntf', patternUrl: "markers/ntf/k",
-	//})
-	
-	var markerControls = new THREEx.ArMarkerControls(arToolkitContext, camera, {
-            type : 'nft',
-            descriptorsUrl : 'markers/ntf/k',
-            changeMatrixMode: 'cameraTransformMatrix'
-        })
-	
-	
-	//let markerControls1 = new THREEx.ArMarkerControls(arToolkitContext, markerRoot1, {
-	//	type: 'pattern', patternUrl: "data/hiro.patt",
-	//})
+	let markerControls1 = new THREEx.ArMarkerControls(arToolkitContext, markerRoot1, {
+		type: 'pattern', patternUrl: "data/hiro.patt",
+	})
 
 	let geometry1 = new THREE.PlaneBufferGeometry(2,2, 4,4);
 
