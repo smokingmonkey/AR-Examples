@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-	<title>1.7!</title>
+	<title> 11 Hello, world!</title>
 	<!-- include three.js library -->
 	<script src='js/three.js'></script>
 	<!-- include jsartookit -->
@@ -12,14 +12,13 @@
 	<script src="threex/threex-artoolkitcontext.js"></script>
 	<script src="threex/threex-arbasecontrols.js"></script>
 	<script src="threex/threex-armarkercontrols.js"></script>
-	//<script src="js/ar-nft.js"></script>
 </head>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
 
 <video id="video" autoplay loop crossOrigin="anonymous" webkit-playsinline style="display:none">
-	<source src="video/genese-moda-femenina-spot-50-seg.ogv" type='video/ogg; codecs="theora, vorbis"'>
-	<source src="video/genese-moda-femenina-spot-50-seg.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+	<source src="video/sintel.ogv" type='video/ogg; codecs="theora, vorbis"'>
+	<source src="video/sintel.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
 </video>
 		
 <!-- 
@@ -48,7 +47,7 @@ function initialize()
 	scene.add( ambientLight );
 				
 	camera = new THREE.Camera();
-	//scene.add(camera);
+	scene.add(camera);
 
 	renderer = new THREE.WebGLRenderer({
 		antialias : true,
@@ -114,23 +113,10 @@ function initialize()
 	// build markerControls
 	markerRoot1 = new THREE.Group();
 	scene.add(markerRoot1);
-	scene.add(camera);
-	// let markerControls1 = new THREEx.ArMarkerControls(arToolkitContext, markerRoot1, {
-	// 	////////type: 'pattern', patternUrl: "data/hiro.patt",
-	// 	type: 'nft', descriptorsUrl : "data/k",
-	// })
+	let markerControls1 = new THREEx.ArMarkerControls(arToolkitContext, markerRoot1, {
+		type: 'pattern', patternUrl: "data/hiro.patt",
+	})
 
-	let markerControls1 = new THREEx.ArMarkerControls(arToolkitContext, camera, {
-            type : 'nft',
-            descriptorsUrl : 'data/k',
-            changeMatrixMode: 'cameraTransformMatrix'
-        })
-
-
-
-
-
-	
 	let geometry1 = new THREE.PlaneBufferGeometry(2,2, 4,4);
 
 	let video = document.getElementById( 'video' );
@@ -142,7 +128,8 @@ function initialize()
 	
 	mesh1 = new THREE.Mesh( geometry1, material1 );
 	mesh1.rotation.x = -Math.PI/2;
-	camera.add( mesh1 );
+	
+	markerRoot1.add( mesh1 );
 }
 
 
